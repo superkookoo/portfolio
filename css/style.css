@@ -8358,7 +8358,7 @@ h1, h2, h3, h4, h5,
 
 .home-wrap .half {
   width: 50%;
-  background: #000000; }
+  background: #fff; }
 
 .owl-carousel {
   position: relative; }
@@ -8944,7 +8944,7 @@ textarea.form-control {
 .user-img {
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 35%; }
+  background-position: 56%; }
 
 .portfolio-wrap {
   display: block;
