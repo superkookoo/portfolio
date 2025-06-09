@@ -38,10 +38,15 @@ header { width: 100%; height: 108px; position: absolute; padding: 0 48px; box-si
     font-style: normal; font-weight: 400; line-height: 43%; letter-spacing: -26px;
     position: absolute; bottom: 4.4%; width: 100%; text-align: center;
 }
-.main_img_title_xlarge span {
-    font-family: "swiss-721-bt-condensed", sans-serif; font-size: 2.7vw; font-style: italic;
-    color: #FFF; line-height: 1; letter-spacing: -2px; 
-}
+.main_img_title_xlarge span { 
+    color: #FFF;
+    text-align: center;
+    font-family: "Swiss 721 Black Condensed";
+    font-size: 48px;
+    font-style: italic;
+    font-weight: 900;
+    line-height: normal;
+    letter-spacing: -2px;}
 
 .values { display: flex; flex-wrap: wrap; width: 95%; flex-direction: column; align-items: center; gap: 72px; margin: 230px auto;}
 
