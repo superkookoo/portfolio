@@ -233,12 +233,12 @@ footer .footer_top .footer_nav { display: flex; align-items: flex-start; gap: 11
 footer .footer_top .footer_nav ul li { margin-bottom: 10px; }
 footer .footer_top .footer_nav ul li:first-child { margin-bottom: 24px;}
 footer .footer_top .footer_nav ul li:first-child a { 
-font-family: "Pretendard"; font-size: 18px; font-style: normal; font-weight: 700; line-height: normal; 
+font-family: "Pretendard Variable"; font-size: 18px; font-style: normal; font-weight: 700; line-height: normal; 
 letter-spacing: -1px;font-weight: 700; color: #FFF;
 }
 
 footer .footer_top .footer_nav ul li a {
-    font-family: "Pretendard"; font-size: 16px; font-style: normal; font-weight: 400; line-height: 16px;
+    font-family: "Pretendard Variable"; font-size: 16px; font-style: normal; font-weight: 400; line-height: 16px;
     letter-spacing: -1px; font-weight: 400; color: #808080;  
 }
 
@@ -248,7 +248,7 @@ footer .footer_top .contents_box {
 }
 
 footer .footer_top .contents_box .info { display: flex; width: 502px; flex-direction: column; align-items: flex-start; gap: 36px; }
-footer .footer_top .contents_box .info .title_small { color: #FFF; font-family: Pretendard; font-size: 18px; font-style: normal; font-weight: 700; line-height: normal; letter-spacing: -1px; }
+footer .footer_top .contents_box .info .title_small { color: #FFF; font-family: "Pretendard Variable"; font-size: 18px; font-style: normal; font-weight: 700; line-height: normal; letter-spacing: -1px; }
 footer .footer_top .contents_box .info .input_box { display: flex; height: 146px; flex-direction: column; align-items: flex-start; gap: 26px; align-self: stretch; }
 footer .footer_top .contents_box .info .input_box .label { display: flex; width: 100%; align-items: center; gap: 22px;  align-self: stretch; }
 footer .footer_top .contents_box .info .input_box .label .name_input { display: flex; width: 156px; height: 60px; padding: 10px; align-items: center; border: 1px solid #FFF;box-sizing: border-box;}
@@ -272,7 +272,7 @@ footer .footer_btm .footer_info .info_btm { display: flex; align-items: center; 
 
 
 footer .sns { display: flex; align-items: center; gap: 44px; position: absolute; right: 0px; bottom: 48px; }
-footer .sns .title_small { color: #FFF; font-family: "Pretendard"; font-size: 18px; font-style: normal; font-weight: 700; line-height: normal; letter-spacing: -1px; }
+footer .sns .title_small { color: #FFF; font-family: "Pretendard Variable"; font-size: 18px; font-style: normal; font-weight: 700; line-height: normal; letter-spacing: -1px; }
 footer .sns .sns_logo { display: flex; align-items: center; gap: 30px; }
 
 
