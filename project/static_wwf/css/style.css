@@ -9,6 +9,11 @@
     src: url("../fonts/swiss721blackextendedbt.woff2") format("woff2");
 }
 
+@font-face {
+    font-family: "Swiss721BlackCondensedItalic.woff2";
+    src: url("../fonts/Swiss721BlackCondensedItalic.woff2") format("woff2");
+}
+
 
 .black_text { color: #000; }
 
