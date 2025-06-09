@@ -41,7 +41,7 @@ header { width: 100%; height: 108px; position: absolute; padding: 0 48px; box-si
 .main_img_title_xlarge span { 
     color: #FFF;
     text-align: center;
-    font-family: "Swiss 721 Black Condensed";
+    font-family: "Swiss 721 BlackCondensed";
     font-size: 48px;
     font-style: italic;
     font-weight: 900;
