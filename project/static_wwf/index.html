@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>세계자연기금 홈페이지, WWF Korea</title>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -18,11 +18,15 @@
         <link href="css/reset.css" rel="stylesheet" type="text/css" />
         <link href="css/style.css" rel="stylesheet" type="text/css" />
         <link href="css/index.css" rel="stylesheet" type="text/css" />
+        <link href="css/aos.css" rel="stylesheet" type="text/css" />
         
         <!-- javascript -->
         <script src="js/jquery.min.js"></script>
         <script src="js/owl.carousel.js"></script>
         <script src="js/carousel.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/header.js"></script>
+        
 
 
     </head>
@@ -30,11 +34,11 @@
     <body>
         <div class="main_img">
             <header>
-                <h1 class="logo">
+                <h1 class="logo" data-aos-easing="ease-out" data-aos="fade-down" data-aos-duration="400">
                     <a href="index.html"><img src="images/logo.png" alt="logo" /></a>
                 </h1> <!-- logo -->
 
-                <nav class="gnb">
+                <nav class="gnb" data-aos-easing="ease-out" data-aos="fade-down" data-aos-duration="700">
                     <ul>
                         <li><a href="sub.html">ABOUT</a></li>
                         <li><a href="sub.html">ACT</a></li>
@@ -43,18 +47,18 @@
                     </ul>
                 </nav> <!--gnb-->
 
-                <nav class="header_right_gnb">
+                <nav class="header_right_gnb" data-aos-easing="ease-out" data-aos="fade-down" data-aos-duration="1000">
                     <ul>
                         <li><a href="#">MY PAGE</a></li>
                         <li><a href="#">SUBSCRIBE</a></li>
                     </ul>
                 </nav><!--header_right_gnb-->
 
-                <img src="images/header_search.png" alt="" class="header_search" />
+                <div class="header_search" data-aos-easing="ease-out" data-aos="fade-down" data-aos-duration="1000" ></div>
 
             </header><!--header-->
 
-            <p class="main_img_title_xlarge">
+            <p class="main_img_title_xlarge" data-aos-easing="ease-out" data-aos="fade-up" data-aos-duration="1100">
                 <span>For a Living</span><br />
                 Planet
             </p>
@@ -344,25 +348,30 @@
                     </div>
                 </div>
                 <p class="article_small">© 2021 WWF – World Wide Fund For Nature (also known as World Wildlife Fund). Creative Commons licence.</p>
+            
+                <div class="sns">
+                    <p class="title_small">Flow Us</p>
+                    <div class="sns_logo">
+                        <a href="#" target="_blank" aria-label="Instagram">
+                            <img src="images/icon_insta.png" alt="Instagram" />
+                        </a>
+                        <a href="#" target="_blank" aria-label="YouTube">
+                            <img src="images/icon_youtube.png" alt="YouTube" />
+                        </a>
+                        <a href="#" target="_blank" aria-label="Facebook">
+                            <img src="images/icon_facebook.png" alt="Facebook" />
+                        </a>
+                        <a href="#" target="_blank" aria-label="Twitter">
+                            <img src="images/icon_twitter.png" alt="Twitter" />
+                        </a>
+                    </div>
+                </div><!--sns-->                
             </div><!--footer_btm-->
 
-            <div class="sns">
-                <p class="title_small">Flow Us</p>
-                <div class="sns_logo">
-                    <a href="#" target="_blank" aria-label="Instagram">
-                        <img src="images/icon_insta.png" alt="Instagram" />
-                      </a>
-                      <a href="#" target="_blank" aria-label="YouTube">
-                        <img src="images/icon_youtube.png" alt="YouTube" />
-                      </a>
-                      <a href="#" target="_blank" aria-label="Facebook">
-                        <img src="images/icon_facebook.png" alt="Facebook" />
-                      </a>
-                      <a href="#" target="_blank" aria-label="Twitter">
-                        <img src="images/icon_twitter.png" alt="Twitter" />
-                      </a>
-                </div>
-            </div><!--sns-->
+
         </footer>
+
+        <script src="js/aos.js"></script>
+        <script src="js/aos_script.js"></script>
     </body>
 </html>
