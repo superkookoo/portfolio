@@ -210,9 +210,9 @@ header { width: 100%; height: 108px; position: absolute; padding: 0 48px; box-si
     background-image: url("../images/conservation_box_bg_1.png");
     background-size: cover; background-position: center; transition: transform 0.2s ease;
 }
-.conservation_box_bg_01:hover::before {
+/* .conservation_box_bg_01:hover::before {
   transform: scale(1.1); 
-}
+} */
 
 
 .conservation_box_bg_01, .conservation_box_bg_02, .conservation_box_bg_03 { gap:34px;
