@@ -81,6 +81,7 @@
 
     --font-1 : "Public Sans", sans-serif;
     --font-2 : "DM Serif Display", serif;
+    --font-3 : "Pretendard", sans-serif;
 
     /* monospace
     */
@@ -1298,13 +1299,21 @@ a:active {
 
 /* headings
  */
-h1, h2, h3, h4, h5, h6, 
-.h1, .h2, .h3, .h4, .h5, .h6 {
+h1, h3, h4, h5, h6, 
+.h1, .h3, .h4, .h5, .h6 {
     font-family            : var(--font-2);
     font-weight            : 400;
     color                  : var(--color-text-dark);
     font-variant-ligatures : common-ligatures;
     text-rendering         : optimizeLegibility;
+}
+
+h2, .h2 { 
+    font-family            : var(--font-3);
+    font-weight            : 600;
+    color                  : var(--color-text-dark);
+    font-variant-ligatures : common-ligatures;
+    text-rendering         : optimizeLegibility; 
 }
 
 h1, .h1 {
@@ -1551,8 +1560,8 @@ hr.fancy::before {
  * -------------------------------------------------------------------- */
 .lead,
 .attention-getter {
-    font-family : var(--font-1);
-    font-weight : 300;
+    font-family : var(--font-3);
+    font-weight : 400;
     font-size   : var(--text-size);
     line-height : var(--vspace-1_25);
     color       : var(--color-text-dark);
