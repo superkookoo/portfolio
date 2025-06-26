@@ -319,7 +319,7 @@ footer .footer_top .contents_box .btn {
 footer .footer_top .contents_box .btn:hover { background: #000; color: #FFF; }
 
 
-footer .footer_btm { display: flex; width: 1824px; padding: 50px 0px; flex-direction: column; align-items: flex-start; gap: 62px; border-top: 1px solid rgba(255, 255, 255, 0.30);}
+footer .footer_btm { display: flex; width: 95%; padding: 50px 0px; flex-direction: column; align-items: flex-start; gap: 62px; border-top: 1px solid rgba(255, 255, 255, 0.30);}
 footer .footer_btm .footer_info { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; align-self: stretch; }
 footer .footer_btm .footer_info .info_top { display: flex; align-items: center; gap: 32px; align-self: stretch; }
 footer .footer_btm .footer_info .info_btm { display: flex; align-items: center; gap: 70px; }
