@@ -4048,7 +4048,7 @@ img.u-pull-left {
  * ------------------------------------------------------------------- */
 
 .contact-top {
-    padding-top : var(--vspace-5);
+    /* padding-top : var(--vspace-5); */
     border-top  : 1px solid var(--color-border);
 }
 
