@@ -1311,7 +1311,7 @@ h1, h3, h4, h5, h6,
 }
 
 h2, .h2 { 
-    font-family            : var(--font-1);
+    font-family            : var(--font-3);
     font-weight            : 600;
     color                  : var(--color-text-dark);
     font-variant-ligatures : common-ligatures;
