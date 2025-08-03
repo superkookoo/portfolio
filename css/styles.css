@@ -77,6 +77,80 @@
  * ------------------------------------------------------------------- */
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Serif+Text:ital@0;1&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
+.about-info li span:nth-child(2) {
+    font-weight: 400; /* 또는 300, normal 등 */
+  }
+
+.ftco-about {
+    position: relative;
+  }
+  
+  .ftco-section {
+    padding: 7em 0;
+    position: relative;
+  }
+  
+  .ftco-no-pt {
+    padding-top: 0 !important;
+  }
+  
+  .ftco-no-pb {
+    padding-bottom: 0 !important;
+  }
+  
+  .img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  
+  .img-about {
+    width: 100%;
+    position: relative;
+  }
+  
+  .img-about .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    opacity: .3;
+    background: #000000;
+  }
+  
+  .img-about .img {
+    width: 100%;
+  }
+  
+  .heading-section h1.big {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 7vw;
+    color: rgba(0, 0, 0, 0.04);
+    z-index: -1;
+    font-weight: 900;
+  }
+  
+  .heading-section h2 {
+    font-size: 40px;
+    font-weight: 700;
+  }
+  
+  .about-info li {
+    margin-bottom: 10px;
+  }
+  
+  .about-info li span:first-child {
+    font-weight: 700; /* Label 강조 (굵게) */
+    width: 130px;
+    display: inline-block;
+    color: #fff; /* 텍스트 색상 (선택사항) */
+  }
+
+
 :root {
 
     --font-1 : "Public Sans", sans-serif;
@@ -144,7 +218,7 @@
     --color-gray-7  : #5b5b5c;
     --color-gray-6  : #727373;
     --color-gray-5  : #8a8a8b;
-    --color-gray-4  : #a1a1a2;
+    --color-gray-4  : #a7a7a7;
     --color-gray-3  : #b9b9b9;
     --color-gray-2  : #d0d0d0;
     --color-gray-1  : #e8e8e8;
@@ -1309,7 +1383,7 @@ h1, h3, h4, h5, h6,
 }
 
 h2, .h2 { 
-    font-family            : var(--font-3);
+    font-family            : var(--font-1);
     font-weight            : 600;
     color                  : var(--color-text-dark);
     font-variant-ligatures : common-ligatures;
