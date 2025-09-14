@@ -20,12 +20,12 @@ header { width: 100%; height: 108px; position: absolute; padding: 0 48px; box-si
 .header_right_gnb ul li a { display: block; font-family: "Roboto Condensed", sans-serif; font-size: 16px; font-weight: 500; color: #fff; }
 .header_right_gnb ul li a:hover { color:#000; }
 
-/*
+
 .main_title_wrap { 
     display: flex; width: 100%; height: 422px; flex-direction: column;
     position: absolute; bottom: -4.8%;
 }
-*/
+
 
 /*
 .main_img_title_large { 
@@ -33,14 +33,21 @@ header { width: 100%; height: 108px; position: absolute; padding: 0 48px; box-si
     font-family: "swiss-721-bt-condensed", sans-serif; font-style: italic;
     line-height: 1; letter-spacing: -2px; 
     position: absolute; bottom: 29%; width: 100%; text-align: center;
-}
-*/
+}*/
 
+/* 원래 스위스 폰트로 할시
 .main_img_title_xlarge { 
-    color: #D7FA29; text-align: center; font-family: "obviously-variable"; font-size: 17vw;
+    color: #D7FA29; text-align: center; font-family: "obviously-variable"; font-size: 20vw;
     font-style: normal; font-weight: 800; line-height: 43%; letter-spacing: -18px;
     position: absolute; bottom: 4.4%; width: 100%; text-align: center;
+}*/
+
+.main_img_title_xlarge { 
+    color: #D7FA29; text-align: center; font-family: "obviously-variable"; font-size: clamp(250px, 23vw, 512px);
+    font-style: normal; font-weight: 800; line-height: 43%; letter-spacing: -18px;
+    position: absolute; bottom: 8%; width: 100%; text-align: center;
 }
+
 .main_img_title_xlarge span { 
     color: #FFF;
     text-align: center;
