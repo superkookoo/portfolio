@@ -130,7 +130,7 @@ header { width: 100%; height: 108px; position: absolute; padding: 0 48px; box-si
 .slogan_article_medium { color: #FFF; font-family: pretendard; font-size: 24px; font-style: normal; font-weight: 600; line-height: 24px; letter-spacing: -1px; }
 */
 
-.slogan_title_xlarge { font-family: "Swis721 BlkEx BT"; font-size: 6.3vw; color: #FFF; line-height: 100%; }
+.slogan_title_xlarge { font-family: "Obviously Variable"; font-size: 6.2vw; font-weight: 800; color: #FFF; line-height: 100%; }
 .slogan_article_medium { font-size: 1.2vw; font-weight: 700; letter-spacing: -0.1rem; color: #FFF; }
 
 .slogan_title_wrap:hover { width: 100%; text-indent: 40px; /*padding-left: 40px;*/ color:#000; background: #FFFC01; }
