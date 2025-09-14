@@ -14,6 +14,40 @@
     src: url("../fonts/swiss-721-bt-black-condensed-italic.woff2") format("woff2")
 }
 
+@font-face {
+    font-family: "obviously", sans-serif;
+font-weight: 400;
+font-style: normal;
+
+font-family: "obviously", sans-serif;
+font-weight: 400;
+font-style: italic;
+
+font-family: "obviously", sans-serif;
+font-weight: 700;
+font-style: normal;
+
+font-family: "obviously", sans-serif;
+font-weight: 700;
+font-style: italic;
+
+font-family: "obviously-compressed", sans-serif;
+font-weight: 400;
+font-style: normal;
+
+font-family: "obviously-compressed", sans-serif;
+font-weight: 700;
+font-style: normal;
+
+font-family: "obviously", sans-serif;
+font-weight: 800;
+font-style: normal;
+
+font-family: "obviously-wide", sans-serif;
+font-weight: 800;
+font-style: normal;
+}
+
 
 .black_text { color: #D7FA29; }
 
