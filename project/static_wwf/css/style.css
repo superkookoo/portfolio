@@ -52,9 +52,13 @@
     font-family: "Swis721 BlkEx BT"; font-size: 48px; font-style: normal; font-weight: 400; line-height: 130%; letter-spacing: -2.5px; color: #FFF;
 }
 
-.title_xxxlarge_en { 
+ .title_xxxlarge_en { 
     font-family: "Swis721 BlkEx BT"; font-size: 92px; font-style: normal; font-weight: 400; line-height: 80%; letter-spacing: -5.5px; color: #FFF; 
 }
+/*
+.title_xxxlarge_en { 
+    font-family: "obviously-variable"; font-size: 116px; font-style: normal; font-weight: 800; line-height: 80%; letter-spacing: -5.5px; color: #FFF; 
+}*/
 
 .article_xlarge { 
      font-size: 35px; font-style: normal; font-weight: 600; line-height: 160%; letter-spacing: -2px; color: #FFF; 
