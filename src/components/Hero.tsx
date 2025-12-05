@@ -35,7 +35,7 @@ export default function Hero() {
           {/* Taglines */}
           <div className="space-y-2">
             {aboutContent.taglines.map((tagline, index) => (
-              <p key={index} className="font-serif text-xl md:text-2xl text-muted-foreground">
+              <p key={index} className="text-xl md:text-2xl text-muted-foreground">
                 {tagline}
               </p>
             ))}
