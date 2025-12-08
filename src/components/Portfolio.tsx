@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { projects } from '@/data/projects'
 import { Card, CardContent } from '@/components/ui/card'
 import { ArrowUpRight } from 'lucide-react'
@@ -19,11 +20,9 @@ export default function Portfolio() {
         {/* Projects Grid - 2x2 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project) => (
-            <a
+            <Link
               key={project.id}
               href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
               className="group block"
             >
               <Card className="overflow-hidden bg-card border-border hover:border-gold/50 transition-all duration-500 h-full">
@@ -65,7 +64,7 @@ export default function Portfolio() {
                   </div>
                 </CardContent>
               </Card>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
