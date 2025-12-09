@@ -25,18 +25,18 @@ export default function Portfolio() {
               href={project.link}
               className="group block"
             >
-              <Card className="overflow-hidden bg-card border-border hover:border-gold/50 transition-all duration-500 h-full">
+              <Card className="overflow-hidden bg-card border-border hover:border-gold/50 active:border-gold/50 transition-all duration-500 h-full">
                 {/* Image Container */}
                 <div className="relative aspect-video overflow-hidden">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="object-cover transition-transform duration-700 md:group-hover:scale-110"
                   />
 
-                  {/* Hover Overlay with Description */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6">
+                  {/* Hover Overlay - Desktop only */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent opacity-0 md:group-hover:opacity-100 transition-all duration-500 hidden md:flex flex-col justify-end p-6">
                     <p className="text-white/90 text-sm md:text-base leading-relaxed mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
                       {project.description}
                     </p>
@@ -45,21 +45,28 @@ export default function Portfolio() {
                       <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </div>
                   </div>
+
+                  {/* Mobile: Always visible gradient at bottom */}
+                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent md:hidden" />
                 </div>
 
                 {/* Card Content */}
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-gold text-xs uppercase tracking-widest mb-2">
+                <CardContent className="p-4 md:p-6">
+                  <div className="flex items-start justify-between gap-3 md:gap-4">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-gold text-xs uppercase tracking-widest mb-1 md:mb-2">
                         {project.category}
                       </p>
-                      <h3 className="text-foreground text-xl font-medium group-hover:text-gold transition-colors">
+                      <h3 className="text-foreground text-lg md:text-xl font-medium group-hover:text-gold group-active:text-gold transition-colors">
                         {project.title}
                       </h3>
+                      {/* Mobile: Show description below title */}
+                      <p className="text-muted-foreground text-sm leading-relaxed mt-2 line-clamp-3 md:hidden">
+                        {project.description}
+                      </p>
                     </div>
-                    <div className="w-10 h-10 rounded-full border border-border group-hover:border-gold group-hover:bg-gold flex items-center justify-center transition-all duration-300 flex-shrink-0">
-                      <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-black transition-colors" />
+                    <div className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-border group-hover:border-gold group-hover:bg-gold group-active:border-gold group-active:bg-gold flex items-center justify-center transition-all duration-300 flex-shrink-0">
+                      <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-black group-active:text-black transition-colors" />
                     </div>
                   </div>
                 </CardContent>
