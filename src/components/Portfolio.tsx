@@ -23,6 +23,8 @@ export default function Portfolio() {
             <Link
               key={project.id}
               href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group block"
             >
               <Card className="overflow-hidden bg-card border-border hover:border-gold/50 active:border-gold/50 transition-all duration-500 h-full">
