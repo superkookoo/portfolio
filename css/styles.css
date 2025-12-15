@@ -3710,6 +3710,31 @@ img.u-pull-left {
     left        : calc(50% - var(--vspace-0_5));
 }
 
+/* hover description overlay */
+.folio-list__item-desc {
+    position         : absolute;
+    bottom           : 0;
+    left             : 0;
+    right            : 0;
+    padding          : 1rem;
+    background       : rgba(0, 0, 0, 0.85);
+    color            : white;
+    font-size        : var(--text-sm);
+    line-height      : 1.5;
+    opacity          : 0;
+    visibility       : hidden;
+    transform        : translateY(10px);
+    transition       : all 0.3s ease;
+    z-index          : 3;
+}
+
+.folio-list__item-link:focus .folio-list__item-desc,
+.folio-list__item-link:hover .folio-list__item-desc {
+    opacity    : 1;
+    visibility : visible;
+    transform  : translateY(0);
+}
+
 .folio-list__item-text::before,
 .folio-list__item-title,
 .folio-list__item-cat {
