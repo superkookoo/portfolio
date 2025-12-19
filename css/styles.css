@@ -3635,10 +3635,13 @@ img.u-pull-left {
     }
 
     .about-info__text .btn {
-        width       : 100%;
-        text-align  : center;
-        padding     : 1.2rem 2rem;
-        font-size   : var(--text-sm);
+        width           : 100%;
+        text-align      : center;
+        padding         : 1.2rem 2rem;
+        font-size       : var(--text-sm);
+        display         : flex;
+        align-items     : center;
+        justify-content : center;
     }
 }
 
