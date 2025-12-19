@@ -2944,6 +2944,12 @@ img.u-pull-left {
     left         : 0;
 }
 
+/* Make navbar full-width */
+.s-header .main-nav-wrap {
+    width     : 100%;
+    max-width : 100%;
+}
+
 .header-mobile {
     z-index          : 101;
     display          : none;
@@ -3218,6 +3224,41 @@ img.u-pull-left {
 .intro-content .text-huge-title {
     font-size     : calc(var(--text-huge) * var(--text-huge-multiplier));
     padding-right : 5vw;
+}
+
+/* --------------------------------------------------------------------
+ * ## scroll reveal text effect
+ * -------------------------------------------------------------------- */
+.scroll-reveal-text {
+    position         : relative;
+}
+
+.parallax-word {
+    display          : inline-block;
+    font-style       : italic;
+    color            : var(--color-1);
+    margin-left      : 0.15em;
+}
+
+.reveal-part {
+    display          : inline-block;
+    opacity          : 0;
+    filter           : blur(8px);
+    transition       : opacity 0.6s ease, filter 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-before {
+    transform        : translateX(-30px);
+}
+
+.reveal-after {
+    transform        : translateY(-20px);
+}
+
+.reveal-part.revealed {
+    opacity          : 1;
+    filter           : blur(0);
+    transform        : translate(0);
 }
 
 /* --------------------------------------------------------------------
@@ -3578,7 +3619,24 @@ img.u-pull-left {
 
 @media screen and (max-width: 600px) {
     .about-info {
-        width : 100%;
+        width   : 100%;
+        padding : 0 1rem;
+    }
+
+    .about-info__text {
+        padding : var(--vspace-0_75) 0 0 0;
+    }
+
+    .about-info__text .attention-getter {
+        font-size   : var(--text-sm);
+        line-height : 1.7;
+    }
+
+    .about-info__text .btn {
+        width       : 100%;
+        text-align  : center;
+        padding     : 1.2rem 2rem;
+        font-size   : var(--text-sm);
     }
 }
 
@@ -3608,177 +3666,126 @@ img.u-pull-left {
 /* --------------------------------------------------------------------
  * ## works portfolio
  * -------------------------------------------------------------------- */
+/* 2x2 Grid Layout */
 .folio-list {
-    --item-min-height : var(--vspace-4_5);
     list-style        : none;
     margin-top        : var(--vspace-4);
     margin-bottom     : var(--vspace-1);
     margin-left       : 0;
+    display           : grid !important;
+    grid-template-columns : repeat(2, 1fr);
+    gap               : 1.5rem;
+    flex-wrap         : unset;
 }
 
 .folio-list__item {
-    margin-bottom : var(--vspace-1);
-    position      : relative;
+    position          : relative;
+    flex              : none !important;
+    width             : 100% !important;
+    padding           : 0 !important;
 }
 
 .folio-list__item-link {
-    display             : block;
-    width               : 100%;
-    padding-left        : calc(5.5 * var(--space));
-    color               : white;
-    transition-duration : .5s;
-    position            : relative;
+    display           : block;
+    padding           : 2.5rem;
+    color             : white;
+    border            : 1px solid rgba(255,255,255,0.15);
+    transition        : border-color 0.3s ease;
 }
 
 .folio-list__item-link:focus,
 .folio-list__item-link:hover {
-    color   : var(--color-1);
-    outline : 0;
-}
-
-.folio-list__item-link:focus .folio-list__item-pic::before,
-.folio-list__item-link:hover .folio-list__item-pic::before {
-    opacity    : 1;
-    visibility : visible;
-}
-
-.folio-list__item-link:focus .folio-list__item-pic::after,
-.folio-list__item-link:hover .folio-list__item-pic::after {
-    opacity    : 1;
-    visibility : visible;
-    transform  : scale(1);
-}
-
-.folio-list__item-link:focus .folio-list__item-text::before,
-.folio-list__item-link:hover .folio-list__item-text::before {
-    width : 100%;
+    color             : var(--color-1);
+    outline           : 0;
+    border-color      : var(--color-1);
 }
 
 .folio-list__item-pic {
-    display  : block;
-    position : absolute;
-    top      : 0;
-    left     : 0;
+    display           : block;
+    position          : relative;
+    overflow          : hidden;
+    margin-bottom     : 2rem;
 }
 
 .folio-list__item-pic img {
-    vertical-align : bottom;
-    object-fit     : cover;
-    width          : var(--item-min-height);
-    height         : var(--item-min-height);
-    margin         : 0;
+    width             : 100%;
+    height            : 350px;
+    object-fit        : cover;
+    transition        : transform 0.5s ease;
 }
 
-.folio-list__item-pic::before,
-.folio-list__item-pic::after {
-    transition : all, 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+.folio-list__item-link:hover .folio-list__item-pic img {
+    transform         : scale(1.03);
 }
 
-.folio-list__item-pic::before {
-    z-index          : 1;
-    content          : "";
-    display          : block;
-    background-color : rgba(255, 255, 255, 0.75);
-    position         : absolute;
-    top              : 0;
-    left             : 0;
-    right            : 0;
-    bottom           : 0;
-    width            : 100%;
-    height           : 100%;
-    opacity          : 0;
-    visibility       : hidden;
-}
-
-.folio-list__item-pic::after {
-    z-index     : 2;
-    display     : block;
-    content     : "+";
-    font-family : var(--font-1);
-    font-weight : 300;
-    font-size   : 2.2rem;
-    color       : black;
-    text-align  : center;
-    height      : var(--vspace-1);
-    width       : var(--vspace-1);
-    line-height : var(--vspace-1);
-    transform   : scale(0.2);
-    opacity     : 0;
-    visibility  : hidden;
-    position    : absolute;
-    top         : calc(50% - var(--vspace-0_5));
-    left        : calc(50% - var(--vspace-0_5));
-}
-
-/* hover description overlay */
+/* Description - hidden by default, shows on hover */
 .folio-list__item-desc {
-    position         : absolute;
-    bottom           : 0;
-    left             : 0;
-    right            : 0;
-    padding          : 1rem;
-    background       : rgba(0, 0, 0, 0.85);
-    color            : white;
-    font-size        : var(--text-sm);
-    line-height      : 1.5;
-    opacity          : 0;
-    visibility       : hidden;
-    transform        : translateY(10px);
-    transition       : all 0.3s ease;
-    z-index          : 3;
+    color             : var(--color-text);
+    font-size         : var(--text-sm);
+    line-height       : 1.7;
+    margin-bottom     : 1.25rem;
+    max-height        : 0;
+    opacity           : 0;
+    overflow          : hidden;
+    transition        : max-height 0.4s ease, opacity 0.3s ease, margin 0.4s ease;
+    margin-bottom     : 0;
 }
 
-.folio-list__item-link:focus .folio-list__item-desc,
 .folio-list__item-link:hover .folio-list__item-desc {
-    opacity    : 1;
-    visibility : visible;
-    transform  : translateY(0);
+    max-height        : 300px;
+    opacity           : 1;
+    margin-bottom     : 1.25rem;
 }
 
-.folio-list__item-text::before,
-.folio-list__item-title,
-.folio-list__item-cat {
-    transition : all, 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+.folio-list__item-desc::after {
+    content           : "VIEW PROJECT  ↗";
+    display           : block;
+    margin-top        : 1.25rem;
+    color             : var(--color-1);
+    font-size         : var(--text-xs);
+    font-weight       : 500;
+    text-transform    : uppercase;
+    letter-spacing    : 0.15em;
+    transition        : letter-spacing 0.25s ease;
+}
+
+.folio-list__item-link:hover .folio-list__item-desc::after {
+    letter-spacing    : 0.2em;
 }
 
 .folio-list__item-text {
-    padding-top : var(--vspace-0_5);
-    border-top  : 1px solid var(--color-border);
-    min-height  : var(--item-min-height);
-    position    : relative;
-}
-
-.folio-list__item-text::before {
-    content          : "";
-    display          : block;
-    width            : 0;
-    height           : 1px;
-    background-color : var(--color-text-light);
-    position         : absolute;
-    top              : 0;
-    left             : 0;
+    padding-top       : 1.5rem;
+    border-top        : 1px solid var(--color-border);
+    display           : flex;
+    justify-content   : space-between;
+    align-items       : center;
 }
 
 .folio-list__item-title {
-    font-family : var(--font-1);
-    font-weight : 500;
-    font-size   : var(--text-lg);
+    font-family       : var(--font-1);
+    font-weight       : 500;
+    font-size         : var(--text-lg);
 }
 
 .folio-list__item-cat {
-    font-size   : var(--text-sm);
-    color       : var(--color-text-light);
-    line-height : var(--vspace-0_75);
-    margin-left : .2rem;
+    font-size         : var(--text-xs);
+    color             : var(--color-1);
+    text-transform    : uppercase;
+    letter-spacing    : 0.15em;
+    margin-bottom     : 0.5rem;
 }
 
 .folio-list__proj-link {
-    display  : block;
-    height   : var(--vspace-1);
-    width    : var(--vspace-1);
-    position : absolute;
-    top      : .8rem;
-    right    : var(--vspace-0_75);
+    display           : none;
+}
+
+.folio-list__item-link:hover .folio-list__proj-link {
+    border-color      : var(--color-1);
+    background        : var(--color-1);
+}
+
+.folio-list__item-link:hover .folio-list__proj-link svg {
+    stroke            : var(--color-body);
 }
 
 .folio-list__proj-link svg {
@@ -3979,24 +3986,22 @@ img.u-pull-left {
  * works
  * ------------------------------------------------------------------- */
 @media screen and (max-width: 1200px) {
-    .folio-list__item-title {
-        font-size   : var(--text-md);
-        line-height : var(--vspace-0_875);
+    .folio-list__item-pic img {
+        height : 280px;
     }
 
-    .folio-list__item-cat {
-        font-size : var(--text-xs);
+    .folio-list__item-link {
+        padding : 2rem;
     }
 }
 
 @media screen and (max-width: 1000px) {
-    .folio-list__item-title {
-        font-size   : var(--text-lg);
-        line-height : var(--vspace-1);
+    .folio-list__item-pic img {
+        height : 240px;
     }
 
-    .folio-list__item-cat {
-        font-size : var(--text-sm);
+    .folio-list__item-link {
+        padding : 1.5rem;
     }
 }
 
@@ -4005,64 +4010,45 @@ img.u-pull-left {
         padding-top    : var(--vspace-4);
         padding-bottom : var(--vspace-3);
     }
-}
 
-@media screen and (max-width: 600px) {
-    .folio-list__item-title {
-        font-size   : var(--text-md);
-        line-height : var(--vspace-0_875);
+    .folio-list {
+        grid-template-columns : 1fr;
+        gap                   : 1.5rem;
     }
 
-    .folio-list__proj-link {
-        right : var(--vspace-0_5);
+    .folio-list__item-link {
+        padding : 1.5rem;
+    }
+
+    .folio-list__item-pic img {
+        height : 300px;
+    }
+
+    /* Always show description on mobile */
+    .folio-list__item-desc {
+        max-height    : none;
+        opacity       : 1;
+        margin-bottom : 1rem;
+        font-size     : var(--text-sm);
     }
 }
 
 @media screen and (max-width: 500px) {
-    .folio-list {
-        --item-min-height : var(--vspace-3_5);
-    }
-
-    .folio-list__item {
-        margin-bottom : var(--vspace-0_75);
-    }
-
     .folio-list__item-link {
-        padding-left : calc(4.25 * var(--space));
-    }
-}
-
-@media screen and (max-width: 400px) {
-    .folio-list .column {
-        flex  : none;
-        width : 50%;
+        padding : 0.75rem;
     }
 
-    .folio-list__item {
-        margin-bottom : 0;
+    .folio-list__item-desc {
+        font-size : 12px;
     }
 
-    .folio-list__item-link {
-        padding-left : 0;
+    .folio-list__item-desc::after {
+        font-size : 10px;
     }
 
-    .folio-list__item-pic {
-        position : static;
-    }
-
-    .folio-list__item-pic img {
-        max-width : 100%;
-        width     : 100%;
-        height    : auto;
-    }
-
-    .folio-list__item-text,
     .folio-list__proj-link {
-        display : none;
-    }
-
-    .modal-popup__desc {
-        padding : 0 var(--vspace-1) var(--vspace-0_25);
+        height : 2.5rem;
+        width  : 2.5rem;
     }
 }
 
