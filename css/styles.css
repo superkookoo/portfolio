@@ -1347,7 +1347,7 @@ h1, .h1 {
 }
 h2, .h2 {
     font-size   : var(--text-lg);
-    line-height : var(--vspace-1_5);
+    line-height : var(--vspace-1);
 }
 
 h3, .h3 {
