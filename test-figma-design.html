@@ -96,21 +96,21 @@
             max-width: 320px;
             position: absolute;
             left: 48px;
-            bottom: 220px;
+            top: 389px;
             z-index: 10;
         }
 
         /* View Project Button - positioned at bottom left */
         .btn-cta {
             position: absolute;
-            bottom: 100px;
+            top: 507px;
             left: 48px;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
             padding: 16px 28px;
             border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 50px;
+            border-radius: 0;
             color: #fff;
             text-decoration: none;
             font-size: 14px;
@@ -616,7 +616,7 @@
 
     <!-- Hero Section -->
     <section id="top" class="hero">
-        <h1 class="hero-title">NOT JUST PIXELS<br>DESIGN IN<br>HARMONY.</h1>
+        <h1 class="hero-title">NOT JUST PIXELS<br>DESIGN IN HARMONY.</h1>
 
         <p class="hero-description">
             디자인은 조화롭게 풀어내고,<br>
@@ -625,14 +625,7 @@
         </p>
 
         <!-- View Project Button -->
-        <a href="#portfolio" class="btn-cta">
-            <span>View Project</span>
-            <span class="arrow">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </span>
-        </a>
+        <a href="#portfolio" class="btn-cta">View Project</a>
 
         <!-- Three.js Canvas -->
         <div id="canvas-container"></div>
