@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>UI/UX Designer Koo Seok Yong</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Pretendard for Korean/body text -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <style>
+        /* Morganite font */
+        @font-face {
+            font-family: 'Morganite';
+            src: url('./fonts/Morganite-SemiBold.woff') format('woff');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #0d0d0d;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 32px 60px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 60px;
+            overflow: hidden;
+        }
+
+        /* Main Headline */
+        .hero-title {
+            font-family: 'Morganite', Impact, 'Arial Black', sans-serif;
+            font-size: clamp(60px, 10vw, 140px);
+            font-weight: 600;
+            font-style: normal;
+            line-height: 0.95;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: absolute;
+            left: 48px;
+            top: 135px;
+            max-width: 900px;
+            z-index: 10;
+        }
+
+        /* Korean Description */
+        .hero-description {
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 320px;
+            position: absolute;
+            left: 48px;
+            top: 389px;
+            z-index: 10;
+        }
+
+        /* View Project Button - positioned at bottom left */
+        .btn-cta {
+            position: absolute;
+            top: 507px;
+            left: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 0;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        .btn-cta .arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-cta .arrow svg {
+            width: 14px;
+            height: 14px;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-cta:hover .arrow {
+            background: #fff;
+        }
+
+        .btn-cta:hover .arrow svg {
+            stroke: #0d0d0d;
+            transform: translateX(2px);
+        }
+
+        /* Three.js Canvas Container */
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        #canvas-container canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Designer Badge - Subtle Liquid Glass Effect */
+        .designer-badge {
+            position: fixed;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px) saturate(150%);
+            -webkit-backdrop-filter: blur(16px) saturate(150%);
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        /* Subtle top shine */
+        .designer-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.12) 0%,
+                transparent 100%
+            );
+            border-radius: 50px 50px 100px 100px;
+            pointer-events: none;
+        }
+
+        .designer-badge .label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            position: relative;
+            z-index: 1;
+        }
+
+        .designer-badge .divider {
+            width: 1px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.25);
+            position: relative;
+            z-index: 1;
+        }
+
+        .designer-badge .name {
+            font-size: 11px;
+            color: #fff;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 70px;
+            right: 60px;
+            width: 36px;
+            height: 36px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            text-decoration: none;
+            transition: border-color 0.3s;
+        }
+
+        .scroll-indicator:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .scroll-indicator svg {
+            width: 12px;
+            height: 12px;
+            fill: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Marquee */
+        .marquee {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 10;
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee 20s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-content span {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-right: 60px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Projects Section */
+        .projects {
+            min-height: 100vh;
+            padding: 100px 60px;
+            background: #0a0a0a;
+        }
+
+        .projects-header {
+            margin-bottom: 60px;
+        }
+
+        .projects-header h2 {
+            font-family: 'Morganite', Impact, 'Arial Black', sans-serif;
+            font-size: clamp(48px, 8vw, 100px);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .projects-header p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            position: relative;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.9) 0%,
+                rgba(0, 0, 0, 0.4) 50%,
+                rgba(0, 0, 0, 0.1) 100%
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 32px;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-category {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 8px;
+        }
+
+        .project-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .project-description {
+            font-size: 14px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 400px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+        }
+
+        .project-card:hover .project-description {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .project-arrow {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover .project-arrow {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-arrow svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-arrow:hover {
+            background: #fff;
+        }
+
+        .project-card:hover .project-arrow:hover svg {
+            stroke: #0a0a0a;
+            transform: translateX(3px);
+        }
+
+        /* Contact Section */
+        .contact {
+            min-height: 100vh;
+            padding: 120px 60px 80px;
+            background: #111;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            position: relative;
+        }
+
+        .contact-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 800px;
+        }
+
+        .contact-header h2 {
+            font-family: 'Morganite', Impact, 'Arial Black', sans-serif;
+            font-size: clamp(60px, 10vw, 120px);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 32px;
+        }
+
+        .contact-info {
+            margin-bottom: 60px;
+        }
+
+        .contact-info p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .contact-info a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #fff;
+        }
+
+        .contact-bio {
+            margin-bottom: 60px;
+        }
+
+        .contact-bio h3 {
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .contact-bio p {
+            font-size: 14px;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .contact-cta {
+            font-family: 'Morganite', Impact, 'Arial Black', sans-serif;
+            font-size: clamp(36px, 6vw, 72px);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: auto;
+            padding-top: 60px;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: absolute;
+            bottom: 80px;
+            right: 60px;
+            width: 48px;
+            height: 48px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .back-to-top:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .back-to-top svg {
+            width: 16px;
+            height: 16px;
+            fill: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            width: 100%;
+            padding: 24px 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: #0a0a0a;
+        }
+
+        .footer-copyright {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-copyright svg {
+            width: 16px;
+            height: 16px;
+            fill: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 20px 30px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero {
+                padding: 0 30px;
+            }
+            .hero-title {
+                font-size: clamp(40px, 12vw, 70px);
+            }
+            .btn-cta {
+                left: 30px;
+                bottom: 140px;
+            }
+            .designer-badge,
+            .scroll-indicator {
+                right: 30px;
+            }
+            .projects {
+                padding: 60px 30px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact {
+                padding: 80px 30px 60px;
+            }
+            .back-to-top {
+                right: 30px;
+                bottom: 60px;
+            }
+            .footer {
+                padding: 20px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="top" class="hero">
+        <h1 class="hero-title">NOT JUST PIXELS<br>DESIGN IN HARMONY.</h1>
+
+        <p class="hero-description">
+            디자인은 조화롭게 풀어내고,<br>
+            감성과 이성은 균형 있게 담아내며<br>
+            브랜드는 흐름 있게, 경험은 통일되게 완성합니다.
+        </p>
+
+        <!-- View Project Button -->
+        <a href="#portfolio" class="btn-cta">View Project</a>
+
+        <!-- Three.js Canvas -->
+        <div id="canvas-container"></div>
+
+        <!-- Designer Badge -->
+        <div class="designer-badge">
+            <span class="label">UI/UX Designer</span>
+            <span class="divider"></span>
+            <span class="name">Koo Seok Yong</span>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <a href="#portfolio" class="scroll-indicator">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 10l5 5 5-5H7z"/>
+            </svg>
+        </a>
+
+        <!-- Marquee -->
+        <div class="marquee">
+            <div class="marquee-content">
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+                <span>CREATIVE LIFE</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="portfolio" class="projects">
+        <div class="projects-header">
+            <h2>Recent Works</h2>
+            <p>Here are some of my favorite projects I have done lately.</p>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Project 1: WWF -->
+            <a href="project/project_wwf.html" target="_blank" class="project-card">
+                <img src="images/wwf_site_mockup.jpg" alt="WWF Website Redesign">
+                <div class="project-overlay">
+                    <span class="project-category">Website Redesign</span>
+                    <h3 class="project-title">WWF</h3>
+                    <p class="project-description">WWF 웹사이트 리디자인뿐 아니라, static으로 직접 구현까지 완료했습니다. 코딩 결과물도 함께 확인하실 수 있습니다.</p>
+                </div>
+                <div class="project-arrow">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Project 2: Leica -->
+            <a href="project/project_leica.html" target="_blank" class="project-card">
+                <img src="images/leica_main.jpg" alt="Leica Responsive Website">
+                <div class="project-overlay">
+                    <span class="project-category">Responsive Website</span>
+                    <h3 class="project-title">Leica</h3>
+                    <p class="project-description">Leica의 브랜드 정체성을 강화하는 방향으로 반응형 웹사이트를 리디자인했습니다. 클래식한 감성과 현대적 UX의 조화를 추구했습니다.</p>
+                </div>
+                <div class="project-arrow">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Project 3: Kakao T -->
+            <a href="project/project_kakao.html" target="_blank" class="project-card">
+                <img src="images/kakao_splash.jpg" alt="Kakao T Mobile App">
+                <div class="project-overlay">
+                    <span class="project-category">Mobile Application Redesign</span>
+                    <h3 class="project-title">Kakao T</h3>
+                    <p class="project-description">Kakao T 앱에서 택시 호출 기능만을 별도로 분리해, 핵심 사용자 흐름에 집중한 UI 중심으로 리디자인하였습니다.</p>
+                </div>
+                <div class="project-arrow">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Project 4: Lotteworld x Pokemon -->
+            <a href="project/project_pokemon.html" target="_blank" class="project-card">
+                <img src="images/lotte_pokemon.jpg" alt="Lotteworld x Pokemon Promotion">
+                <div class="project-overlay">
+                    <span class="project-category">Promotion</span>
+                    <h3 class="project-title">Lotteworld x Pokemon</h3>
+                    <p class="project-description">기존의 롯데월드 X 포켓몬스터 콜라보레이션을 새로운 시각으로 재해석하여 프로모션 페이지를 구성했습니다.</p>
+                </div>
+                <div class="project-arrow">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-content">
+            <div class="contact-header">
+                <h2>Reach Me At</h2>
+            </div>
+
+            <div class="contact-info">
+                <p>MAIL : <a href="mailto:tjrwl92@gmail.com">tjrwl92@gmail.com</a></p>
+                <p>PHONE : <a href="tel:+821088243751">+82 10 8824 3751</a></p>
+            </div>
+
+            <div class="contact-bio">
+                <h3>감각을 구조로, 흐름을 디자인으로 풀어내는<br>UI/UX 디자이너 구석영입니다.</h3>
+                <p>
+                    사용자의 맥락을 관찰하고 문제를 구조화하며,<br>
+                    시각적 흐름으로 해답을 제시하는 디자인을 지향합니다.<br>
+                    Figma부터 HTML/CSS까지 활용하며 실행 가능한 설계를 고민하고,<br>
+                    브랜드 감성과 사용성의 균형도 중요하게 생각합니다.
+                </p>
+                <br>
+                <p>
+                    협업에서는 팀의 리듬을 읽고 유연하게 조율하며<br>
+                    서로의 장점을 이끌어내는 커뮤니케이션을 중시합니다.<br>
+                    아직은 신입이지만,<br>
+                    사용자와 브랜드 사이의 의미 있는 연결을 만들어가는 디자이너로<br>
+                    꾸준히 성장하고자 합니다.
+                </p>
+            </div>
+
+            <div class="contact-cta">LET'S GET IN TOUCH.</div>
+        </div>
+
+        <!-- Back to top -->
+        <a href="#top" class="back-to-top">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 4l-8 8h5v8h6v-8h5z"/>
+            </svg>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-copyright">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1.5-4.5c.83 0 1.5-.34 2-1l1.5 1c-.73 1.17-1.92 2-3.5 2-2.21 0-4-1.79-4-4s1.79-4 4-4c1.58 0 2.77.83 3.5 2l-1.5 1c-.5-.66-1.17-1-2-1-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5z"/>
+            </svg>
+            <span>2025 Koo Seok Yong Superkookoo Seoul.</span>
+        </div>
+    </footer>
+
+    <!-- Import Three.js as a module -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { SimplexNoise } from 'three/addons/math/SimplexNoise.js';
+
+        // --- Configuration ---
+        const VOXEL_SIZE = 1;
+        const ISLAND_RADIUS = 18;
+        const ISLAND_DEPTH = 14;
+        const TREE_HEIGHT = 16;
+
+        // Palette based on the image
+        const PALETTE = {
+            GRASS_TOP: 0x6a8d46,
+            GRASS_SIDE: 0x567238,
+            DIRT: 0x5c4033,
+            STONE_LIGHT: 0x7a7a7a,
+            STONE_DARK: 0x555555,
+            TRUNK: 0x3e2723,
+            LEAVES_1: 0xffb7c5, // Light pink
+            LEAVES_2: 0xffc0cb, // Pink
+            LEAVES_3: 0xff69b4, // Hot pink (shadows)
+            WATER: 0xaaddff,
+            WATER_FOAM: 0xffffff
+        };
+
+        // --- Setup Scene ---
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        // Dark background to match portfolio theme
+        scene.background = new THREE.Color(0x0d0d0d);
+        // Subtle fog
+        scene.fog = new THREE.FogExp2(0x0d0d0d, 0.008);
+
+        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(48, 24, 48);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.SoftShadowMap;
+        container.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.3;
+        controls.enableZoom = false;
+        controls.enablePan = false;
+
+        // --- Lighting (adjusted for dark theme) ---
+        const ambientLight = new THREE.AmbientLight(0x404040, 0.8);
+        scene.add(ambientLight);
+
+        const sunLight = new THREE.DirectionalLight(0xffeedd, 1.2);
+        sunLight.position.set(50, 80, 30);
+        sunLight.castShadow = true;
+        sunLight.shadow.mapSize.width = 2048;
+        sunLight.shadow.mapSize.height = 2048;
+        sunLight.shadow.camera.near = 0.5;
+        sunLight.shadow.camera.far = 200;
+        sunLight.shadow.camera.left = -50;
+        sunLight.shadow.camera.right = 50;
+        sunLight.shadow.camera.top = 50;
+        sunLight.shadow.camera.bottom = -50;
+        scene.add(sunLight);
+
+        // Rim light for drama
+        const rimLight = new THREE.DirectionalLight(0xff69b4, 0.5);
+        rimLight.position.set(-30, 20, -30);
+        scene.add(rimLight);
+
+        // --- Voxel Logic ---
+        const voxels = [];
+
+        function addVoxel(x, y, z, color) {
+            voxels.push({ x, y, z, color });
+        }
+
+        const dist = (x1, z1, x2, z2) => Math.sqrt((x2-x1)**2 + (z2-z1)**2);
+
+        // --- Procedural Generation ---
+        const simplex = new SimplexNoise();
+
+        for (let x = -ISLAND_RADIUS; x <= ISLAND_RADIUS; x++) {
+            for (let z = -ISLAND_RADIUS; z <= ISLAND_RADIUS; z++) {
+                const d = dist(0, 0, x, z);
+
+                if (d < ISLAND_RADIUS - 1) {
+                    const surfaceHeight = Math.floor(simplex.noise(x * 0.1, z * 0.1) * 2);
+
+                    let depth = Math.floor((ISLAND_RADIUS - d) * 1.2);
+                    depth += Math.floor(simplex.noise(x * 0.2, z * 0.2) * 4);
+
+                    let isRiver = false;
+                    if (x > 2 && x < 6 && z > 0) {
+                        depth -= 1;
+                        isRiver = true;
+                    }
+
+                    for (let y = surfaceHeight; y >= surfaceHeight - depth; y--) {
+                        let color;
+
+                        if (isRiver && y === surfaceHeight) {
+                            continue;
+                        } else if (isRiver && y === surfaceHeight - 1) {
+                            color = PALETTE.STONE_DARK;
+                        }
+                        else if (y === surfaceHeight) {
+                            color = (Math.random() > 0.8) ? PALETTE.GRASS_TOP : 0x7a9e55;
+                            if(Math.random() > 0.98) addVoxel(x, y+1, z, PALETTE.STONE_LIGHT);
+                        } else if (y > surfaceHeight - 3) {
+                            color = PALETTE.DIRT;
+                        } else {
+                            color = (Math.random() > 0.5) ? PALETTE.STONE_LIGHT : PALETTE.STONE_DARK;
+                        }
+
+                        if (x > 2 && x < 6 && z > ISLAND_RADIUS - 3) {
+                        } else {
+                            addVoxel(x, y, z, color);
+                        }
+                    }
+                }
+            }
+        }
+
+        // The Tree
+        const trunkX = -4;
+        const trunkZ = -2;
+
+        for (let y = 0; y < TREE_HEIGHT; y++) {
+            let offX = Math.sin(y * 0.3) * 2;
+            let offZ = Math.cos(y * 0.2) * 2;
+
+            let thickness = (y < 4) ? 2 : 1;
+
+            for(let tx = -thickness; tx <= thickness; tx++) {
+                for(let tz = -thickness; tz <= thickness; tz++) {
+                    if(tx*tx + tz*tz <= thickness*thickness + 0.5) {
+                        addVoxel(trunkX + offX + tx, y + 1, trunkZ + offZ + tz, PALETTE.TRUNK);
+                    }
+                }
+            }
+
+            if (y > 6 && y % 3 === 0) {
+                let branchLen = 4 + Math.random() * 4;
+                let dirX = (Math.random() - 0.5);
+                let dirZ = (Math.random() - 0.5);
+                for(let b=1; b<branchLen; b++) {
+                    addVoxel(trunkX + offX + dirX*b*2, y + 1 + b, trunkZ + offZ + dirZ*b*2, PALETTE.TRUNK);
+                }
+            }
+        }
+
+        // Canopy (Cherry Blossoms)
+        const canopyCenters = [
+            {x: trunkX, y: TREE_HEIGHT + 2, z: trunkZ, r: 8},
+            {x: trunkX + 5, y: TREE_HEIGHT - 2, z: trunkZ + 2, r: 6},
+            {x: trunkX - 5, y: TREE_HEIGHT - 1, z: trunkZ - 2, r: 6},
+            {x: trunkX, y: TREE_HEIGHT + 4, z: trunkZ - 4, r: 5},
+            {x: trunkX + 2, y: TREE_HEIGHT, z: trunkZ + 5, r: 6},
+        ];
+
+        canopyCenters.forEach(sphere => {
+            for (let x = -sphere.r; x <= sphere.r; x++) {
+                for (let y = -sphere.r; y <= sphere.r; y++) {
+                    for (let z = -sphere.r; z <= sphere.r; z++) {
+                        if (x*x + y*y + z*z <= sphere.r*sphere.r) {
+                            if (Math.random() > 0.4) {
+                                const worldX = sphere.x + x;
+                                const worldY = sphere.y + y;
+                                const worldZ = sphere.z + z;
+
+                                const rand = Math.random();
+                                let col = PALETTE.LEAVES_1;
+                                if (rand < 0.33) col = PALETTE.LEAVES_2;
+                                else if (rand < 0.66) col = PALETTE.LEAVES_3;
+
+                                addVoxel(worldX, worldY, worldZ, col);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Floating Rocks
+        const floatingRocks = [
+            {x: 15, y: -5, z: 10, s: 2},
+            {x: -18, y: -2, z: 5, s: 1.5},
+            {x: 5, y: -15, z: -10, s: 3},
+        ];
+
+        floatingRocks.forEach(rock => {
+            for(let x=-rock.s; x<=rock.s; x++) {
+                for(let y=-rock.s; y<=rock.s; y++) {
+                    for(let z=-rock.s; z<=rock.s; z++) {
+                         if (x*x + y*y + z*z <= rock.s*rock.s + Math.random()) {
+                             addVoxel(rock.x+x, rock.y+y, rock.z+z, PALETTE.STONE_DARK);
+                         }
+                    }
+                }
+            }
+        });
+
+        // --- Rendering the Static Voxels ---
+        const geometry = new THREE.BoxGeometry(VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE);
+        const material = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.8, metalness: 0.1 });
+
+        const instancedMesh = new THREE.InstancedMesh(geometry, material, voxels.length);
+        instancedMesh.castShadow = true;
+        instancedMesh.receiveShadow = true;
+
+        const dummy = new THREE.Object3D();
+        const color = new THREE.Color();
+
+        voxels.forEach((voxel, i) => {
+            dummy.position.set(voxel.x, voxel.y, voxel.z);
+            dummy.updateMatrix();
+            instancedMesh.setMatrixAt(i, dummy.matrix);
+            instancedMesh.setColorAt(i, color.setHex(voxel.color));
+        });
+
+        scene.add(instancedMesh);
+
+        // --- Animated Elements ---
+
+        // Waterfall
+        const waterCount = 150;
+        const waterGeo = new THREE.BoxGeometry(0.8, 0.8, 0.8);
+        const waterMat = new THREE.MeshStandardMaterial({
+            color: PALETTE.WATER,
+            transparent: true,
+            opacity: 0.8,
+            roughness: 0.1
+        });
+        const waterfallMesh = new THREE.InstancedMesh(waterGeo, waterMat, waterCount);
+        scene.add(waterfallMesh);
+
+        const waterParticles = [];
+        for(let i=0; i<waterCount; i++) {
+            waterParticles.push({
+                x: 3 + Math.random() * 3,
+                y: 0 + Math.random(),
+                z: 10 + Math.random() * 5,
+                speed: 0.1 + Math.random() * 0.2,
+                offset: Math.random() * 100,
+                state: 'river'
+            });
+        }
+
+        // Falling Petals
+        const petalCount = 200;
+        const petalGeo = new THREE.BoxGeometry(0.2, 0.2, 0.2);
+        const petalMat = new THREE.MeshBasicMaterial({ color: PALETTE.LEAVES_1 });
+        const petalMesh = new THREE.InstancedMesh(petalGeo, petalMat, petalCount);
+        scene.add(petalMesh);
+
+        const petals = [];
+        for(let i=0; i<petalCount; i++) {
+            petals.push({
+                x: (Math.random() - 0.5) * 40,
+                y: 10 + Math.random() * 20,
+                z: (Math.random() - 0.5) * 40,
+                speedY: 0.05 + Math.random() * 0.05,
+                speedX: (Math.random() - 0.5) * 0.05,
+                speedZ: (Math.random() - 0.5) * 0.05,
+                rotSpeed: (Math.random() - 0.5) * 0.1
+            });
+        }
+
+        // --- Mouse interaction ---
+        let mouseX = 0;
+        let mouseY = 0;
+
+        // Designer badge follows cursor
+        const designerBadge = document.querySelector('.designer-badge');
+        let badgeX = window.innerWidth / 2;
+        let badgeY = window.innerHeight / 2;
+        let targetBadgeX = badgeX;
+        let targetBadgeY = badgeY;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = (event.clientY / window.innerHeight) * 2 - 1;
+
+            // Update badge target position with offset (right bottom of cursor)
+            targetBadgeX = event.clientX + 100;
+            targetBadgeY = event.clientY + 40;
+        });
+
+        // Smooth badge animation
+        function animateBadge() {
+            badgeX += (targetBadgeX - badgeX) * 0.1;
+            badgeY += (targetBadgeY - badgeY) * 0.1;
+
+            designerBadge.style.left = badgeX + 'px';
+            designerBadge.style.top = badgeY + 'px';
+
+            requestAnimationFrame(animateBadge);
+        }
+        animateBadge();
+
+        // --- Animation Loop ---
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const time = clock.getElapsedTime();
+
+            controls.update();
+
+            // Mouse influence on rotation
+            controls.autoRotateSpeed = 0.3 + mouseX * 0.5;
+
+            // Island floating
+            instancedMesh.position.y = Math.sin(time * 0.5) * 0.5;
+            waterfallMesh.position.y = instancedMesh.position.y;
+
+            // Waterfall animation
+            waterParticles.forEach((p, i) => {
+                if (p.state === 'river') {
+                    p.z += p.speed;
+                    p.y = 0;
+                    p.y += Math.sin(time * 5 + p.offset) * 0.1;
+
+                    if (p.z > 13) {
+                        p.state = 'falling';
+                    }
+                } else if (p.state === 'falling') {
+                    p.y -= 0.4;
+                    p.z += 0.05;
+
+                    if (p.y < -25) {
+                        p.state = 'river';
+                        p.z = 0;
+                        p.x = 3 + Math.random() * 3;
+                        p.y = 0;
+                    }
+                }
+
+                dummy.position.set(p.x, p.y, p.z);
+                dummy.scale.setScalar(1);
+                if (p.state === 'falling') dummy.scale.y = 2;
+
+                dummy.updateMatrix();
+                waterfallMesh.setMatrixAt(i, dummy.matrix);
+            });
+            waterfallMesh.instanceMatrix.needsUpdate = true;
+
+            // Petals animation
+            petals.forEach((p, i) => {
+                p.y -= p.speedY;
+                p.x += p.speedX + Math.sin(time + p.y)*0.02;
+                p.z += p.speedZ + Math.cos(time + p.y)*0.02;
+
+                if (p.y < -30) {
+                    p.y = 25;
+                    p.x = (Math.random() - 0.5) * 30;
+                    p.z = (Math.random() - 0.5) * 30;
+                }
+
+                dummy.position.set(p.x, p.y, p.z);
+                dummy.rotation.set(time * p.rotSpeed, time * p.rotSpeed, time * p.rotSpeed);
+                dummy.scale.setScalar(1);
+                dummy.updateMatrix();
+                petalMesh.setMatrixAt(i, dummy.matrix);
+            });
+            petalMesh.instanceMatrix.needsUpdate = true;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Handle Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
